@@ -16,4 +16,4 @@ jobs:
             set -e
             cd /var/www/html/ejemplo
 
-            git pull
+            sudo git pull
