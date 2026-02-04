@@ -1,0 +1,19 @@
+name: Deploy BASIC WEB (Remote)
+on:
+  push:
+    branches: [ "main" ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy (Remote) por SSH con Sail
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.HOST }}
+          username: ubuntu
+          key:  ${{ secrets.SERVER_SSH_KEY }}
+          script: |
+            set -e
+            cd /var/www/html/ejemplo
+
+            GIT_SSH_COMMAND="ssh -i ~/.ssh/github_deploy -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes" git pull --ff-only
