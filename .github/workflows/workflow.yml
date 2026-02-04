@@ -6,12 +6,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy (Remote) por SSH con Sail
+      - name: Deploy BASIC WEB (Remote)
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.HOST }}
           username: ubuntu
-          key:  ${{ secrets.SERVER_SSH_KEY }}
+          key:  ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             set -e
             cd /var/www/html/ejemplo
